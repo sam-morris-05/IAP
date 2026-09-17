@@ -43,3 +43,35 @@ verified all parts of the toolchain.
 
 The AI helped me identify the required setup steps and organize the repository,
 but I still had to create and verify the project on my computer.
+
+## Prompt 2 - Requirements Elicitation
+
+### Prompt
+
+Elicit software requirements for a Python application called a Three-Phase
+Power Calculator. The application is intended for electrical engineering users.
+Provide user stories, acceptance criteria, and non-functional requirements.
+
+### Raw Output
+
+The AI suggested requirements involving three-phase calculations, Wye and
+Delta systems, input validation, calculation history, file exporting, saved
+settings, cross-platform support, and measurable calculation accuracy.
+
+### What I Changed
+
+I compared the generated requirements with the scope of the application I plan
+to build.
+
+I kept requirements that matched the project, revised requirements that needed
+more detail, removed features that were outside my intended scope, and added
+requirements the AI did not identify.
+
+### Why the Original Was Wrong / Incomplete
+
+The AI output was useful as a starting point, but it made assumptions about
+features that were not part of my original concept.
+
+It also did not ask enough questions about the exact scope before generating
+the requirements, so the output required review before it accurately represented
+the project.
