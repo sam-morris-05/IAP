@@ -75,3 +75,87 @@ features that were not part of my original concept.
 It also did not ask enough questions about the exact scope before generating
 the requirements, so the output required review before it accurately represented
 the project.
+
+## Prompt 3 — M3 Domain Model
+
+### Prompt
+
+Using the following M2 requirements for my Three-Phase Power Calculator, create a domain model as a Mermaid class diagram.
+
+The application requirements include:
+
+- Calculate three-phase power from electrical inputs.
+- Calculate line current when the required values are provided.
+- Calculate line voltage when the required values are provided.
+- Calculate power factor when the required values are provided.
+- Support both Wye and Delta connections.
+- Validate missing, non-numeric, or invalid input before performing a calculation.
+- Allow the user to clear the calculator and enter a new calculation.
+- Calculations must be within 1% of the expected result.
+- All committed pytest tests must pass.
+- A calculation must return a result within 1 second.
+
+Identify the important domain classes, attributes, methods, and relationships.
+
+### AI Output
+
+The AI-generated domain model was saved in `M3_AI_DRAFT.md`.
+
+The AI model included:
+
+- `User`
+- `UserSettings`
+- `Calculation`
+- `PowerCalculation`
+- `CurrentCalculation`
+- `VoltageCalculation`
+- `PowerFactorCalculation`
+- `WyeConnection`
+- `DeltaConnection`
+- `CalculationHistory`
+- `ValidationService`
+- `ExportService`
+- `AuditLog`
+
+### Changes I Made
+
+I removed `User` and `UserSettings` because my M2 requirements do not include accounts, profiles, login features, or saved preferences.
+
+I removed `CalculationHistory` because the application only needs to clear the current calculation. There is no requirement to save or display previous calculations.
+
+I removed `ExportService` and `AuditLog` because exporting files and tracking user activity are outside the current scope of the application.
+
+I removed the separate `PowerCalculation`, `CurrentCalculation`, `VoltageCalculation`, and `PowerFactorCalculation` subclasses. I decided that these calculations are related enough to be handled by one `CalculationService` instead of creating a separate class for every equation.
+
+I replaced the separate `WyeConnection` and `DeltaConnection` classes with a `ConnectionType` enumeration containing `WYE` and `DELTA`.
+
+I did not keep a separate `ValidationService`. Validation is closely related to whether a calculation request is valid, so I made it a responsibility of `CalculationService`.
+
+I also split the AI's general `Calculation` class into:
+
+- `CalculationRequest`
+- `CalculationService`
+- `CalculationResult`
+
+This separates the values going into the calculation, the calculation logic itself, and the result returned by the calculator.
+
+I added a `QuantityType` enumeration to represent the supported calculation choices:
+
+- `POWER`
+- `LINE_CURRENT`
+- `LINE_VOLTAGE`
+- `POWER_FACTOR`
+
+### Why I Changed It
+
+The AI draft included several features that are common in larger applications but are not required by my M2 requirements.
+
+My final model is intentionally smaller. I wanted every major class or relationship to be tied directly to a requirement instead of adding features that the application may never need.
+
+I also did not create classes for the non-functional requirements. Accuracy within 1%, passing all committed pytest tests, and returning a result within one second are constraints that should be checked through testing rather than represented as domain objects.
+
+The final model therefore focuses on the main calculation flow:
+
+`CalculationRequest -> CalculationService -> CalculationResult`
+
+with `ConnectionType` and `QuantityType` used for the limited sets of valid choices.
