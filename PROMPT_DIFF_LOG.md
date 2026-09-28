@@ -159,3 +159,24 @@ The final model therefore focuses on the main calculation flow:
 `CalculationRequest -> CalculationService -> CalculationResult`
 
 with `ConnectionType` and `QuantityType` used for the limited sets of valid choices.
+
+## Prompt 4 - Architecture Decision Record
+
+### Prompt
+
+I asked AI to help me write an architecture decision record for a real design decision in my Three-Phase Power Calculator. I provided the M4 assignment requirements and rubric and asked that the ADR stay consistent with the domain model and design decisions I made in M3.
+
+### AI Output
+
+The AI suggested documenting my decision to separate the calculation logic from the interface using CalculationRequest, CalculationService, and CalculationResult.
+
+It also suggested two alternatives: putting the calculations directly in the interface code and creating a separate class for every type of calculation.
+
+### Changes / Decisions I Made
+
+- I used the separation of calculation logic from the interface because it matches the architecture in my M3 domain model and design defense.
+- I kept the alternative of putting calculations directly in the interface because it would have been a simpler realistic approach.
+- I kept the alternative of creating separate classes for each calculation type because it was another possible design, but I felt it would add unnecessary complexity at the current size of the project.
+- I made sure the consequences included disadvantages, including the additional structure created by the request/service/result design.
+- I included the risk that CalculationService could become too large if more calculation types are added later.
+- I reviewed the ADR so that it describes my current design decisions and does not claim that the architecture has already been fully implemented.
