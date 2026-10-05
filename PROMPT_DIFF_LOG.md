@@ -180,3 +180,32 @@ It also suggested two alternatives: putting the calculations directly in the int
 - I made sure the consequences included disadvantages, including the additional structure created by the request/service/result design.
 - I included the risk that CalculationService could become too large if more calculation types are added later.
 - I reviewed the ADR so that it describes my current design decisions and does not claim that the architecture has already been fully implemented.
+
+## Prompt 5 - M5 Walking Skeleton and Continuous Integration
+
+### Prompt
+
+Help me implement a walking skeleton for my Three-Phase Power Calculator.
+The application needs one genuine end-to-end path from a graphical user
+interface through the calculation logic, into persistent storage, back out
+of storage, and to the user. I also need continuous integration that performs
+a build check and runs automated tests.
+
+### AI Response Summary
+
+The AI suggested using a CustomTkinter graphical interface for one
+three-phase power calculation. The interface creates a CalculationRequest,
+passes it to CalculationService, stores the CalculationResult in a JSON file,
+reads the saved result back from storage, and displays that persisted result
+in the GUI. The AI also suggested a pytest end-to-end test and a GitHub
+Actions workflow containing a compilation check and test invocation.
+
+### Changes Made
+
+I kept the implementation limited to one main three-phase power calculation
+path so the milestone remains a thin walking skeleton rather than a complete
+application. I kept the calculation logic separate from the graphical
+interface to follow the architecture established in the previous milestone.
+I used JSON storage because it provides real persistent storage without adding
+database complexity. Additional application features will be implemented
+after the walking skeleton has been proven.
