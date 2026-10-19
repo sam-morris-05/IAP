@@ -209,3 +209,47 @@ interface to follow the architecture established in the previous milestone.
 I used JSON storage because it provides real persistent storage without adding
 database complexity. Additional application features will be implemented
 after the walking skeleton has been proven.
+
+
+---
+
+
+## Prompt 6 - M6 Testing and Bug Injection
+
+### Prompt
+
+Help me complete M6 for my Three-Phase Power Calculator. I need to write an acceptance test for my M5 walking skeleton, add unit tests for the calculation logic, generate a coverage report, and inject a realistic bug to prove that my test suite can detect incorrect behavior.
+
+Keep my existing application structure and tests intact. I also need to capture the fault diff, failing test results, and passing results after restoring the code.
+
+### AI Response Summary
+
+The AI suggested using pytest to test the calculation logic and persistent JSON storage. It recommended additional tests for real power, zero and unity power factor, Wye and Delta relationships, and invalid inputs.
+
+The AI also recommended using pytest-cov to measure code coverage and introducing a temporary fault that replaces the user's power factor with 1.0 in the real-power calculation.
+
+It suggested saving the test results, coverage report, fault diff, and restored test results as evidence for the milestone.
+
+### Changes Made
+
+- Created `test_m6.py` with additional acceptance and unit tests.
+- Updated `requirements.txt` to include pytest-cov.
+- Created `pytest.ini` to configure test discovery after pytest attempted to collect a text file from the evidence folder.
+- Generated a coverage report showing 95% coverage across `calculation_service.py` and `storage.py`.
+- Confirmed that all 13 tests passed before injecting the fault.
+- Temporarily modified `calculation_service.py` to ignore the entered power factor.
+- Ran the test suite with the fault and observed 4 failures and 9 passing tests.
+- Restored the correct real-power calculation and confirmed all 13 tests passed again.
+- Saved testing evidence in `m6_evidence/` and documented the results in `M6_TESTING_EVIDENCE.md`.
+
+### Why I Changed It
+
+I kept my existing application architecture and tests instead of rewriting the calculator because M6 is focused on verifying the functionality developed in previous milestones.
+
+I chose to inject a power factor error because it represents a realistic engineering mistake. The program still produces a numerical result, but that result is incorrect when the power factor is not 1.0.
+
+The four failing tests demonstrated that my test suite checks actual calculation behavior rather than simply verifying that the program runs.
+
+I also added `pytest.ini` because pytest initially attempted to read an evidence text file as a test, causing a UnicodeDecodeError. Excluding the evidence directory resolved the issue.
+
+After restoring the calculation, all 13 tests passed. This demonstrated that the test suite could detect the injected fault and verify the correction.
