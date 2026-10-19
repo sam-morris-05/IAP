@@ -1,0 +1,23 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\sammm\OneDrive\Desktop\Software Engineering\Individual Project\IAP
+configfile: pytest.ini
+testpaths: .
+plugins: cov-7.1.0
+collected 13 items
+
+test_calculator.py .                                                     [  7%]
+test_m6.py ...........                                                   [ 92%]
+test_walking_skeleton.py .                                               [100%]
+
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.12.1-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+calculation_service.py      21      1    95%   46
+storage.py                  22      1    95%   51
+------------------------------------------------------
+TOTAL                       43      2    95%
+Coverage HTML written to dir htmlcov
+============================= 13 passed in 0.36s ==============================

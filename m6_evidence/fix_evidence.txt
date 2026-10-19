@@ -1,0 +1,28 @@
+﻿M6 FAULT RESTORATION EVIDENCE
+
+File: calculation_service.py
+
+INJECTED FAULT:
+real_power = apparent_power * 1.0
+
+RESTORED CODE:
+real_power = apparent_power * request.power_factor
+
+DESCRIPTION:
+The injected fault ignored the power factor supplied
+by the user.
+
+The correct calculation was restored after the
+automated test suite detected the fault.
+
+FAULT INJECTION RESULTS:
+4 failed, 9 passed
+
+FINAL RESULTS:
+See tests_pass_after.txt for verification that
+the corrected code passes all tests.
+
+Supporting evidence:
+- fault_diff.txt
+- tests_fail_injected.txt
+- tests_pass_after.txt

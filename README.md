@@ -72,3 +72,53 @@ python app.py
 ```bash
 python -m pytest -v
 ```
+
+
+---
+
+## M6 – Testing and Bug Injection
+
+Milestone 6 introduces additional automated testing and demonstrates the ability of the test suite to detect realistic calculation faults.
+
+### Automated Testing
+
+The project uses pytest to test:
+
+- Three-phase real power calculations
+- Zero and unity power factor
+- Wye and Delta connection relationships
+- Invalid input handling
+- Calculation and JSON storage integration
+
+Run the complete test suite:
+
+    python -m pytest -v
+
+### Code Coverage
+
+Generate a coverage report using:
+
+    python -m pytest --cov=calculation_service --cov=storage --cov-report=term-missing --cov-report=html
+
+M6 baseline coverage: 95%
+
+### Bug Injection Demonstration
+
+A temporary calculation error was introduced by replacing the user's power factor with a constant value of 1.0.
+
+This produced incorrect real-power results and caused four automated tests to fail.
+
+The correct calculation was subsequently restored.
+
+### Testing Documentation
+
+See M6_TESTING_EVIDENCE.md for the testing summary.
+
+See the m6_evidence folder for:
+
+- Initial passing test output
+- Coverage report
+- Injected fault diff
+- Failing test output
+- Fix evidence
+- Final passing test output

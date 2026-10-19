@@ -1,0 +1,24 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.12.1, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\sammm\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sammm\OneDrive\Desktop\Software Engineering\Individual Project\IAP
+configfile: pytest.ini
+testpaths: .
+plugins: cov-7.1.0
+collecting ... collected 13 items
+
+test_calculator.py::test_setup PASSED                                    [  7%]
+test_m6.py::test_m6_acceptance_calculation_and_storage PASSED            [ 15%]
+test_m6.py::test_real_power PASSED                                       [ 23%]
+test_m6.py::test_zero_power_factor PASSED                                [ 30%]
+test_m6.py::test_unity_power_factor PASSED                               [ 38%]
+test_m6.py::test_wye_relationships PASSED                                [ 46%]
+test_m6.py::test_delta_relationships PASSED                              [ 53%]
+test_m6.py::test_invalid_inputs[0-10-0.8] PASSED                         [ 61%]
+test_m6.py::test_invalid_inputs[-480-10-0.8] PASSED                      [ 69%]
+test_m6.py::test_invalid_inputs[480--10-0.8] PASSED                      [ 76%]
+test_m6.py::test_invalid_inputs[480-10--0.1] PASSED                      [ 84%]
+test_m6.py::test_invalid_inputs[480-10-1.1] PASSED                       [ 92%]
+test_walking_skeleton.py::test_walking_skeleton_end_to_end PASSED        [100%]
+
+============================= 13 passed in 0.08s ==============================

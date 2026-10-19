@@ -1,0 +1,13 @@
+﻿diff --git a/calculation_service.py b/calculation_service.py
+index e82d78a..47410e7 100644
+--- a/calculation_service.py
++++ b/calculation_service.py
+@@ -55,7 +55,7 @@ class CalculationService:
+ 
+         real_power = (
+             apparent_power
+-            * request.power_factor
++            * 1.0
+         )
+ 
+         reactive_power = math.sqrt(
