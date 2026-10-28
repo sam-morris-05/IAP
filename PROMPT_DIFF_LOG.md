@@ -253,3 +253,62 @@ The four failing tests demonstrated that my test suite checks actual calculation
 I also added `pytest.ini` because pytest initially attempted to read an evidence text file as a test, causing a UnicodeDecodeError. Excluding the evidence directory resolved the issue.
 
 After restoring the calculation, all 13 tests passed. This demonstrated that the test suite could detect the injected fault and verify the correction.
+
+
+## Prompt 7 – M7 Refactoring
+
+**Prompt:**
+
+Review my Three-Phase Power Calculator and identify
+a structural problem that can be improved without
+changing the application's behavior. Refactor the
+calculation_service.py file using the Extract Method
+technique. Keep the existing formulas, error messages,
+outputs, and public interface the same. Do not modify
+the existing tests or add any new features.
+
+**AI Response:**
+
+ChatGPT identified a Long Method / Multiple
+Responsibilities code smell in the calculate() method.
+
+The AI recommended separating input validation
+and Wye/Delta phase calculations into their own
+helper methods.
+
+**Changes Made:**
+
+- Extracted input validation into _validate_request().
+- Extracted Wye/Delta phase calculations into
+  _calculate_phase_values().
+- Updated calculate() to call the new helper methods.
+- Preserved the original power formulas and outputs.
+- Left the existing tests unchanged.
+
+**Diff Summary:**
+
+Modified: calculation_service.py
+
+Before:
+The calculate() method handled validation, phase
+relationships, power calculations, and result
+construction in one method.
+
+After:
+Input validation and phase relationships are handled
+by separate helper methods, making calculate()
+shorter and easier to maintain.
+
+**Verification:**
+
+Before refactoring: [ENTER ACTUAL PYTEST RESULT]
+
+After refactoring: [ENTER ACTUAL PYTEST RESULT]
+
+Test files modified: None
+
+**Result:**
+
+The refactor improved code organization by separating
+responsibilities. The existing pytest suite was used
+to verify that application behavior was preserved.

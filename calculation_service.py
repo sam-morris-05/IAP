@@ -1,3 +1,4 @@
+
 import math
 
 from models import (
@@ -8,11 +9,11 @@ from models import (
 
 
 class CalculationService:
-    def calculate(
+    def _validate_request(
         self,
         request: CalculationRequest,
-    ) -> CalculationResult:
-
+    ) -> None:
+        """Validate the inputs for a calculation."""
         if request.line_voltage <= 0:
             raise ValueError(
                 "Line voltage must be greater than zero."
@@ -28,16 +29,19 @@ class CalculationService:
                 "Power factor must be between 0 and 1."
             )
 
+    def _calculate_phase_values(
+        self,
+        request: CalculationRequest,
+    ) -> tuple[float, float]:
+        """Calculate phase voltage and current."""
         if request.connection_type == ConnectionType.WYE:
             phase_voltage = (
                 request.line_voltage / math.sqrt(3)
             )
-
             phase_current = request.line_current
 
         elif request.connection_type == ConnectionType.DELTA:
             phase_voltage = request.line_voltage
-
             phase_current = (
                 request.line_current / math.sqrt(3)
             )
@@ -46,6 +50,19 @@ class CalculationService:
             raise ValueError(
                 "Unsupported connection type."
             )
+
+        return phase_voltage, phase_current
+
+    def calculate(
+        self,
+        request: CalculationRequest,
+    ) -> CalculationResult:
+        """Perform the three-phase power calculation."""
+        self._validate_request(request)
+
+        phase_voltage, phase_current = (
+            self._calculate_phase_values(request)
+        )
 
         apparent_power = (
             math.sqrt(3)
